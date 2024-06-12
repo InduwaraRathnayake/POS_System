@@ -75,7 +75,8 @@ public class Bill implements Serializable{
         String formattedNow = now.format(formatter);
 
         System.out.println();
-        System.out.printf("%s\n\n%s", "Date and Time  :", formattedNow, "Thank you for shopping with us");
+        System.out.printf("%s %s\n", "Date and Time  :", formattedNow);
+        System.out.println( "Thank you for shopping with us...");
         System.out.println("##################################################################################");
 
 
