@@ -14,15 +14,12 @@ public class POS {
             option = cashierOption1();
             MainMenu(option);
         } while (option != 0);
-
         System.out.println("\nSystem shutdown...");
-
     }
 
     private GloceryItem getItemDetails() throws ItemCodeNotFound {
         BufferedReader br = null;
         GloceryItem item = null;
-
         try {
             System.out.print("Enter the Item code : ");
             br = new BufferedReader(new InputStreamReader(System.in));
@@ -44,31 +41,13 @@ public class POS {
         switch (option) {
             case 1:
                 bill = billing(true, bill);
-                int choice = -1;
-                while (true) {
-                    try {
-                        System.out.println("\nDo you want to close this Bill   : press 1. ");
-                        System.out.println("Do you want save the currentBill : press 2. ");
-                        System.out.print("Enter your option: ");
-                        choice = prompt.nextInt();
-                        if (choice == 1 || choice == 2) {
-                            break;
-                        } else {
-                            System.out.println("Invalid input. Please enter 1 or 2.");
-                        }
-                    } catch (InputMismatchException e) {
-                        System.out.println("Invalid input. Please enter an integer.");
-                        prompt.next();
-                        continue;
-                    }
-                }
+                int choice = cashierOption3();
                 if (choice == 1) {
                     bill.calculateBill();
                 } else {
                     PendingBillHandler.saveBill(bill);
                 }
                 break;
-
             case 2:
                 System.out.print("Enter the customer name : ");
                 String customerName = prompt.nextLine();
@@ -94,7 +73,7 @@ public class POS {
         branch = prompt.nextLine();
     }
 
-    public int cashierOption1() {
+    private int cashierOption1() {
         int option = -1;
         while (true) {
             System.out.println("\nDo you want to Start a new Bill    : press 1. ");
@@ -124,6 +103,7 @@ public class POS {
         while (true) {
             System.out.println("\nDo you want to add any items : press 1. ");
             System.out.println("Do you want to end this bill : press 2. ");
+            System.out.print("Enter your option: ");
             try {
                 option = prompt.nextInt();
                 prompt.nextLine();
@@ -140,9 +120,30 @@ public class POS {
         }
         return option;
     }
+  
+    private int cashierOption3() {
+        int option = -1;
+            while (true) {
+                try {
+                    System.out.println("\nDo you want to close this Bill   : press 1. ");
+                    System.out.println("Do you want save the currentBill : press 2. ");
+                    System.out.print("Enter your option: ");
+                    option = prompt.nextInt();
+                    if (option == 1 || option == 2) {
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please enter 1 or 2.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer.");
+                    prompt.next();
+                    continue;
+                }
+            }
+        return option;
+    }
 
     private Bill billing(boolean newBill, Bill bill) {
-
         if (newBill) {
             bill = new Bill(cashierName, branch);
 
@@ -157,9 +158,7 @@ public class POS {
                 }
             }
             bill.setCustomerName(customerName);
-
         }
-
         while (true) {
             int option = cashierOption2();
             if (option == 1) {
@@ -180,11 +179,9 @@ public class POS {
                     prompt.next();
                     continue;
                 }
-                
             } else if (option == 2) {
                 return bill;
             }
         }
     }
-
 }

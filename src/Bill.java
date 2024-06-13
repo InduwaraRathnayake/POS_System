@@ -42,7 +42,7 @@ public class Bill implements Serializable{
     }
 
     public void calculateBill(){
-        System.out.println("##################################################################################");
+        System.out.println("\n##################################################################################");
         System.out.println("                            Super-Saving supermarket");
         System.out.printf("%-65s %s\n", "Cashier             :", cashierName);
         System.out.printf("%-65s %s\n", "Branch              :", branch);
@@ -78,9 +78,5 @@ public class Bill implements Serializable{
         System.out.printf("%s %s\n", "Date and Time  :", formattedNow);
         System.out.println( "Thank you for shopping with us...");
         System.out.println("##################################################################################");
-
-
     }
-    
-
 }
