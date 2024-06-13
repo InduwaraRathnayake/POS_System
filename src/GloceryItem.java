@@ -12,7 +12,7 @@ public class GloceryItem implements Serializable {
     private double quantity;
 
     public GloceryItem(String itemCode, int price, double weightORsize, String manufacDate, String expireDate, 
-    String manufacturerName, double discount, String name) 
+                        String manufacturerName, double discount, String name) 
     {
         this.itemCode = itemCode;
         this.price = price;
